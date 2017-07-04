@@ -9,8 +9,11 @@ from sklearn import svm
 from sklearn.cross_validation import train_test_split
 from sklearn.datasets import load_boston
 import scipy as sp
-
-
+import requests
+import pandas_datareader.data as web
+import bs4 as bs
+import datetime as dt
+import os
 
 dates = []
 prices = []
@@ -20,6 +23,7 @@ def get_data(filename):
     df = pd.read_csv(filename)
     dates = df.index.values
     prices = df["Open"].values
+
 
 def plot_data(d, p, price_type):
     plt.plot(d, p)
@@ -112,8 +116,7 @@ def train_data_alt(dates, prices):
     plt.legend()
     plt.show()
 
-get_data("TSLA.csv")
-
+get_data("data/TSLA.csv")
 # print(dates, prices)
 # plot_data(dates, prices, "Open")
 # print(len(dates), len(prices))
@@ -137,4 +140,4 @@ def line_of_best_fit(degree):
     # print("Predicted:\n" , prices_predict, "Actual:\n", prices)
     plt.show()
 
-line_of_best_fit(10)
+# line_of_best_fit(10)
